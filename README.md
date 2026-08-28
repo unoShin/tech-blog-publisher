@@ -16,6 +16,12 @@ arXiv 논문, AI 기업 공식 블로그, 기술 아티클을 입력하면, 에�
 
 ### 이 프로젝트는 [Antigravity(AGY)](https://antigravity.dev)의 스킬 시스템을 기준으로 개발되었지만, SKILL.md의 구조와 프롬프트는 범용적으로 설계되어 있어 다른 AI 에이전트(Cursor, Cline, Windsurf, Claude Code 등)에서도 참고하거나 활용할 수 있습니다.
 
+### 📌 실제 발행 예시
+
+> **[엔비디아의 충격적인 진화 알고리즘: 블랙웰 B200에서 cuDNN과 FlashAttention-4를 능가한 AVO](https://escape-engineering.tistory.com/entry/%EC%97%94%EB%B9%84%EB%94%94%EC%95%84%EC%9D%98-%EC%B6%A9%EA%B2%A9%EC%A0%81%EC%9D%B8-%EC%A7%84%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EB%B8%94%EB%9E%99%EC%9B%B0-B200%EC%97%90%EC%84%9C-cuDNN%EA%B3%BC-FlashAttention-4%EB%A5%BC-%EB%8A%A5%EA%B0%80%ED%95%9C-AVO)**
+>
+> 이 파이프라인으로 제작된 실제 블로그 포스트입니다. 논문 분석부터 5단계 황금 구조 작성, 다이어그램 캡처, HTML 컴파일까지 전 과정이 자동화되었습니다.
+
 ---
 
 ## 📦 포함된 스킬
