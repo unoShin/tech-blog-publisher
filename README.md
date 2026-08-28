@@ -3,13 +3,15 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-≥18-green.svg)](https://nodejs.org/)
 [![Python](https://img.shields.io/badge/Python-3.10+-yellow.svg)](https://www.python.org/)
+[![Vision](https://img.shields.io/badge/Vision%20DLA-DocLayout--YOLO-orange.svg)](https://github.com/unoShin/tech-blog-publisher)
 
-> 기술 논문과 아티클을 시니어 엔지니어 수준의 한국어 테크 블로그 포스트로 자동 변환·컴파일·발행하는 AI 에이전트 스킬 패키지
+> **"단순 텍스트 요약을 넘어, 논문의 도표·수식·아키텍처까지 픽셀 단위로 추출하여 완성하는 완전 자율형 테크 블로그 퍼블리싱 파이프라인"**
 
 ---
 
 ## 📑 목차 (Table of Contents)
 
+- [💡 핵심 차별점: 왜 Layout Detection인가?](#-핵심-차별점-왜-layout-detection인가)
 - [✨ 소개](#-소개)
 - [📌 실제 발행 예시](#-실제-발행-예시)
 - [📦 포함된 스킬 & 파이프라인](#-포함된-스킬--파이프라인)
@@ -24,11 +26,36 @@
 
 ---
 
+## 💡 핵심 차별점: 왜 Layout Detection인가?
+
+### 💥 AS-IS: "글 쓰는 것보다, 논문에서 이미지를 가져오는 게 훨씬 어렵습니다"
+
+LLM을 이용해 논문 텍스트를 요약하거나 글을 생성하는 것은 이제 누구나 할 수 있습니다.  
+하지만 **시니어 엔지니어 수준의 깊이 있는 기술 블로그**를 만들려면 **아키텍처 다이어그램, 벤치마크 표, 핵심 수식**이 필수적입니다. 기존 방식들은 여기서 모두 실패합니다:
+
+| 기존 방식 | 문제점 | 결과 |
+|:---|:---|:---|
+| **`pdfimages` / 단순 래스터 추출** | 벡터 차트, 표, 복합 수식을 인식하지 못하고 파편화된 비트맵 조각만 추출 | ❌ 깨진 이미지, 도표 누락 |
+| **멀티모달 LLM 통째 입력** | 2단(Multi-column) 복잡한 논문 레이아웃에서 특정 Figure만 고해상도로 정밀 크롭 불가 | ❌ 저화질, 잘못된 영역 크롭 |
+| **수동 캡처 & 붙여넣기** | 결국 엔지니어가 논문을 열고 일일이 캡처 도구로 잘라내야 함 | ❌ 완전 자동화 파이프라인의 붕괴 |
+
+---
+
+### ⚡ TO-BE: Vision AI (DocLayout-YOLO) 기반 지능형 레이아웃 파싱
+
+**Tech Blog Publisher**는 텍스트 생성 이전에 **Document Layout Analysis (DLA)**를 파이프라인의 핵심 코어로 통합했습니다:
+
+1. 🎯 **DocLayout-YOLO (SOTA DLA)**: 논문 PDF를 200 DPI로 렌더링한 뒤, 딥러닝 객체 탐지 모델이 **Figure(그림/차트), Table(도표), Formula(수식)**의 경계 상자를 픽셀 단위로 정밀 검출하여 무손실 크롭합니다.
+2. 🌐 **Headless Chrome 다이어그램 캡처**: 웹 기술 블로그의 인라인 React/SVG/Canvas 컴포넌트도 CDP WebSocket을 통해 고해상도(2x Scale)로 실시간 캡처합니다.
+3. 🔗 **맥락 기반 자동 결합**: 추출된 고해상도 시각 자료가 5단계 황금 구조 본문에 `Figure 1, 2...`로 자동 배치되고, Google Drive CDN으로 즉시 호스팅됩니다.
+
+---
+
 ## ✨ 소개
 
 **Tech Blog Publisher**는 AI 코딩 에이전트를 위한 스킬(Skill) 패키지입니다.
 
-arXiv 논문, AI 기업 공식 블로그, 기술 아티클을 입력하면, 에이전트가 자동으로 **분석 → 구조화 → 한국어 블로그 작성 → 다이어그램 캡처 → 이미지 CDN 업로드 → HTML 컴파일 → 블로그 발행**까지 전 과정을 수행합니다.
+arXiv 논문(PDF) 또는 기술 아티클(URL)을 입력하면, 에이전트가 **레이아웃 비전 파싱 → 5단계 구조화 → 한국어 심층 작성 → 다이어그램 캡처 → 이미지 CDN 업로드 → HTML 컴파일 → 블로그 발행**까지 전 과정을 원스톱으로 수행합니다.
 
 > 💡 **에이전트 호환성**: 이 프로젝트는 [Antigravity(AGY)](https://antigravity.dev)의 스킬 시스템을 기준으로 개발되었지만, `SKILL.md`의 구조와 프롬프트는 범용적으로 설계되어 있어 **Cursor, Cline, Windsurf, Claude Code** 등 다양한 AI 에이전트에서도 즉시 참고하고 활용할 수 있습니다.
 
@@ -38,7 +65,7 @@ arXiv 논문, AI 기업 공식 블로그, 기술 아티클을 입력하면, 에�
 
 > 🔗 **[엔비디아의 충격적인 진화 알고리즘: 블랙웰 B200에서 cuDNN과 FlashAttention-4를 능가한 AVO](https://escape-engineering.tistory.com/entry/%EC%97%94%EB%B9%84%EB%94%94%EC%95%84%EC%9D%98-%EC%B6%A9%EA%B2%A9%EC%A0%81%EC%9D%B8-%EC%A7%84%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EB%B8%94%EB%9E%99%EC%9B%B0-B200%EC%97%90%EC%84%9C-cuDNN%EA%B3%BC-FlashAttention-4%EB%A5%BC-%EB%8A%A5%EA%B0%80%ED%95%9C-AVO)**
 >
-> 이 파이프라인으로 제작된 실제 테크 블로그 포스트입니다. 논문 분석부터 5단계 황금 구조 작성, 다이어그램 정밀 캡처, HTML 에디토리얼 테마 컴파일까지 전 과정이 자동화되었습니다.
+> 이 파이프라인으로 제작된 실제 테크 블로그 포스트입니다. 논문 분석부터 5단계 황금 구조 작성, DocLayout-YOLO 다이어그램 정밀 캡처, HTML 에디토리얼 테마 컴파일까지 전 과정이 자동화되었습니다.
 
 ---
 
@@ -46,10 +73,10 @@ arXiv 논문, AI 기업 공식 블로그, 기술 아티클을 입력하면, 에�
 
 저장소에는 2개의 독립적인 스킬이 포함되어 있으며, 하나의 파이프라인으로 유기적으로 연계됩니다:
 
-| 스킬 | 경로 | 설명 |
+| 스킬 | 경로 | 핵심 역할 |
 |------|------|------|
-| **Tech Blog Publisher** | `tech-blog-publisher/` | 기술 문서를 5단계 황금 구조의 한국어 블로그로 변환하고 반응형 웹/블로그 HTML로 컴파일 |
-| **PDF Layout Extractor** | `pdf_layout_extractor/` | DocLayout-YOLO 모델로 PDF 논문에서 도표·수식·그림을 픽셀 단위로 정밀 추출 |
+| **PDF Layout Extractor** | `pdf_layout_extractor/` | **[Vision DLA]** DocLayout-YOLO 모델로 PDF 논문에서 도표·수식·그림을 픽셀 단위로 정밀 검출 & 크롭 |
+| **Tech Blog Publisher** | `tech-blog-publisher/` | **[Pipeline Core]** 추출된 시각 자료와 기술 문서를 5단계 황금 구조로 결합하고 반응형 웹/블로그 HTML로 컴파일 |
 
 <p align="center">
   <img src="assets/pipeline.jpg" alt="Tech Blog Publisher Pipeline" width="720" />
@@ -69,11 +96,21 @@ npm install
 
 ### 2. 환경 설정
 
-#### 필수 환경
+#### 1) 필수 환경
 - **Node.js** ≥ 18.0.0
-- **Headless Chrome** (`google-chrome` 또는 `chromium-browser`) — 다이어그램 자동 캡처 시 필요
+- **Headless Chrome** (`google-chrome` 또는 `chromium-browser`) — 웹 다이어그램 자동 캡처 시 필요
 
-#### 선택: Google Drive CDN 연동
+#### 2) PDF 레이아웃 추출 환경 (논문 이미지 정밀 파싱)
+- **Python** ≥ 3.10 (Conda 권장)
+- **DocLayout-YOLO** 모델 체크포인트 (`.pt` 파일)
+- **pdftoppm** (`poppler-utils`)
+
+```bash
+# poppler 설치 (Ubuntu/Debian)
+sudo apt-get install -y poppler-utils
+```
+
+#### 3) 선택: Google Drive CDN 연동
 이미지를 Google Drive CDN(`https://lh3.googleusercontent.com/d/...`)으로 자동 호스팅하려면:
 
 1. [Google Cloud Console](https://console.cloud.google.com/)에서 프로젝트 생성 및 Google Drive API 활성화
@@ -81,12 +118,6 @@ npm install
 3. CDN 폴더를 생성하고 서비스 계정 이메일을 **편집자(Editor)**로 공유
 
 > 💡 Google Drive 설정을 생략하면 로컬 상대 경로로 안전하게 폴백 빌드됩니다.
-
-#### 선택: PDF 레이아웃 추출 환경
-논문 PDF에서 도표/수식을 추출할 경우:
-- **Python** ≥ 3.10 (Conda 권장)
-- **DocLayout-YOLO** 모델 체크포인트 (`.pt` 파일)
-- **pdftoppm** (`poppler-utils`)
 
 ---
 
@@ -109,14 +140,13 @@ cp -r pdf_layout_extractor <project-root>/.gemini/skills/
 
 에이전트에게 자연어로 요청:
 ```text
-"이 arXiv 논문(URL)을 분석해서 한국어 테크 블로그 포스트로 작성해줘"
-"이 논문 PDF에서 핵심 아키텍처 다이어그램과 수식을 추출해줘"
+"이 arXiv 논문(URL/PDF)에서 핵심 아키텍처 다이어그램과 수식을 추출하고, 한국어 심층 테크 블로그로 작성해줘"
 ```
 
 #### 2) 기타 AI 에이전트 (Cursor, Cline, Windsurf, Claude Code 등)
 - **프롬프트 활용**: `SKILL.md` 내용을 System Prompt나 Custom Instructions에 주입하여 사용
 - **표준 가이드 참고**: 5단계 황금 구조, 린팅 룰, 스타일 가이드를 작성 지침으로 직접 활용
-- **독립 CLI 실행**: 빌드/린터/캡처 스크립트를 독립 Node.js CLI 도구로 실행
+- **독립 CLI 실행**: 빌드/린터/캡처/레이아웃 추출 스크립트를 독립 CLI 도구로 실행
 
 ---
 
@@ -129,16 +159,28 @@ drafts/260828_01/
 └── fig1.png        # 추출 또는 캡처된 본문 이미지
 ```
 
-1. **초안 작성**: `templates/post-template.md` 기반으로 5단계 구조 작성
+1. **PDF 도표 추출 (논문)**:
+   ```bash
+   python scripts/extract_layout_images.py paper.pdf drafts/260828_01/
+   ```
+2. **다이어그램 캡처 (웹 아티클)**:
+   ```bash
+   node scripts/capture_diagrams.js "<URL>" "drafts/260828_01/"
+   ```
+3. **초안 작성**: `templates/post-template.md` 기반으로 5단계 구조 작성
    - 🪝 1. 문제의식과 핵심 제안 (Hook & Paradigm Shift)
    - 🏗️ 2. 심층 아키텍처 및 메커니즘 (Deep Architecture)
    - 📊 3. 정량 벤치마크 및 한계 분석 (Quantitative Benchmarks)
    - ⚙️ 4. 시스템 구현 및 엔지니어링 분석 (System Engineering)
    - 🎯 5. 결론 및 핵심 요약 (Conclusion & Key Takeaways)
-2. **다이어그램 캡처 (웹 아티클)**: `node scripts/capture_diagrams.js "<URL>" "drafts/260828_01/"`
-3. **PDF 도표 추출 (논문)**: `python scripts/extract_layout_images.py paper.pdf drafts/260828_01/`
-4. **품질 검증 (Lint)**: `npm run verify -- drafts/260828_01/index.md`
-5. **컴파일 (Build)**: `npm run build -- drafts/260828_01/index.md`
+4. **품질 검증 (Lint)**:
+   ```bash
+   npm run verify -- drafts/260828_01/index.md
+   ```
+5. **컴파일 (Build)**:
+   ```bash
+   npm run build -- drafts/260828_01/index.md
+   ```
 6. **발행**: 생성된 `dist/260828_01/index.html`을 블로그 플랫폼(Tistory 등)의 HTML 모드에 붙여넣기
 
 ---
@@ -147,7 +189,10 @@ drafts/260828_01/
 
 ```text
 tech-blog-publisher/
-├── tech-blog-publisher/              # 메인 스킬 (발행 파이프라인)
+├── pdf_layout_extractor/             # 🔍 [Vision DLA] PDF 레이아웃 정밀 추출 스킬
+│   └── SKILL.md                      # DocLayout-YOLO 스킬 명세서
+│
+├── tech-blog-publisher/              # ✍️ [Pipeline Core] 발행 파이프라인 스킬
 │   ├── SKILL.md                      # 스킬 마스터 명세서
 │   ├── package.json                  # Node.js 의존성 및 실행 스크립트
 │   ├── scripts/
@@ -162,9 +207,6 @@ tech-blog-publisher/
 │   └── references/
 │       ├── instructions.md           # 마스터 운영 지침
 │       └── lessons.md                # 26대 품질 개선 누적 교훈집
-│
-├── pdf_layout_extractor/             # 보조 스킬 (PDF Layout Extractor)
-│   └── SKILL.md                      # DocLayout-YOLO 스킬 명세서
 │
 ├── assets/                           # 문서 에셋 (다이어그램 등)
 ├── .gitignore
