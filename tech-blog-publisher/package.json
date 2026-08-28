@@ -1,0 +1,28 @@
+{
+  "name": "tech-blog-publisher",
+  "version": "1.0.0",
+  "description": "Antigravity skill for automated AI/tech blog publishing pipeline with Tistory HTML compile, Google Drive CDN upload, and quality linting.",
+  "main": "scripts/build.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "verify": "node scripts/verify_post.js",
+    "capture": "node scripts/capture_diagrams.js"
+  },
+  "keywords": [
+    "antigravity",
+    "skill",
+    "tech-blog",
+    "tistory",
+    "google-drive-cdn",
+    "ai-agent"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "front-matter": "^4.0.2",
+    "googleapis": "^173.0.0",
+    "highlight.js": "^11.11.1",
+    "marked": "^3.0.8"
+  }
+}

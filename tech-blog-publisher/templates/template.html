@@ -1,0 +1,563 @@
+<article class="tistory-post-container">
+  <!-- Impeccable High-Craft Editorial CSS Styling (Zero AI-Slop) -->
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap');
+
+    /* ==========================================================================
+       Design System Tokens & Global Container
+       ========================================================================== */
+    .tistory-post-container {
+      --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+      --font-serif: "Newsreader", Georgia, serif;
+      --font-mono: "JetBrains Mono", monospace;
+      
+      --color-slate-900: #0f172a;
+      --color-slate-800: #1e293b;
+      --color-slate-700: #334155;
+      --color-slate-600: #475569;
+      --color-slate-500: #64748b;
+      --color-slate-200: #e2e8f0;
+      --color-slate-100: #f1f5f9;
+      --color-slate-50:  #f8fafc;
+      
+      --color-blue-600: #2563eb;
+      --color-blue-700: #1d4ed8;
+      --color-blue-50:  #eff6ff;
+
+      font-family: var(--font-sans);
+      line-height: 1.85;
+      color: var(--color-slate-800);
+      font-size: 16.5px;
+      word-break: keep-all;
+      word-wrap: break-word;
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+      letter-spacing: -0.015em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @media (max-width: 768px) {
+      .tistory-post-container {
+        font-size: 15.5px;
+        padding: 0 4px;
+        line-height: 1.8;
+      }
+    }
+
+    /* ==========================================================================
+       H2 Section Headers (Clean Architectural Typography without Double-Line Collision)
+       ========================================================================== */
+    .tistory-post-container h2 {
+      font-size: 1.55em;
+      font-weight: 800;
+      color: var(--color-slate-900);
+      line-height: 1.4;
+      letter-spacing: -0.028em;
+      margin-top: 2.4em;
+      margin-bottom: 0.85em;
+      border: none !important;
+      padding-top: 0 !important;
+      position: relative;
+    }
+
+    .tistory-post-container h2:first-of-type {
+      margin-top: 1.4em;
+    }
+
+    /* ==========================================================================
+       H3 Sub-headers (Clean Typography with Micro Eyebrow Accent)
+       ========================================================================== */
+    .tistory-post-container h3 {
+      font-size: 1.25em;
+      font-weight: 700;
+      color: var(--color-slate-900);
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      margin-top: 2.4em;
+      margin-bottom: 0.75em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tistory-post-container h3::before {
+      content: "§";
+      color: var(--color-blue-600);
+      font-family: var(--font-serif);
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+
+    .tistory-post-container h4 {
+      font-size: 1.08em;
+      font-weight: 700;
+      color: var(--color-slate-800);
+      line-height: 1.45;
+      margin-top: 1.8em;
+      margin-bottom: 0.5em;
+    }
+
+    /* ==========================================================================
+       Body Paragraphs & Visual Texture
+       ========================================================================== */
+    .tistory-post-container p {
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      color: var(--color-slate-700);
+    }
+
+    /* Lead paragraph right after H2 */
+    .tistory-post-container h2 + p {
+      font-size: 1.05em;
+      color: var(--color-slate-900);
+      line-height: 1.9;
+    }
+
+    /* Highlighted Strong / Bold Text (Clean Solid Styling without Strikethrough Artifacts) */
+    .tistory-post-container p strong,
+    .tistory-post-container li strong,
+    .tistory-post-container strong {
+      color: var(--color-slate-900);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       Lists with Clean Standard Padding & Bullet Separation (No Overlap)
+       ========================================================================== */
+    .tistory-post-container ul {
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      padding-left: 24px !important;
+      list-style-type: disc !important;
+    }
+
+    .tistory-post-container ul > li {
+      margin-bottom: 0.55em;
+      color: var(--color-slate-700);
+      line-height: 1.8;
+      padding-left: 4px;
+    }
+
+    .tistory-post-container ul > li::marker {
+      color: var(--color-blue-600);
+      font-size: 1.1em;
+    }
+
+    .tistory-post-container ul > li > p {
+      margin-top: 0;
+      margin-bottom: 0.3em;
+    }
+
+    .tistory-post-container ol {
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      padding-left: 24px !important;
+      list-style-type: decimal !important;
+      color: var(--color-slate-700);
+    }
+
+    .tistory-post-container ol > li {
+      margin-bottom: 0.55em;
+      padding-left: 4px;
+      line-height: 1.8;
+    }
+
+    .tistory-post-container ol > li::marker {
+      color: var(--color-blue-600);
+      font-weight: 700;
+    }
+
+    .tistory-post-container ol > li > p {
+      margin-top: 0;
+      margin-bottom: 0.3em;
+    }
+
+    .tistory-post-container hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #cbd5e1 20%, #cbd5e1 80%, transparent);
+      margin: 3.5em 0;
+    }
+
+    /* ==========================================================================
+       Table of Contents (TOC) - Div-based Rock-Solid Clean Index Card
+       ========================================================================== */
+    .tistory-post-container .toc-container {
+      background: #fafaf9;
+      border: 1px solid #e7e5e4;
+      border-radius: 10px;
+      padding: 1.25em 1.5em;
+      margin: 2em 0 2.8em 0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .tistory-post-container .toc-title {
+      font-family: var(--font-mono);
+      font-size: 0.82em;
+      font-weight: 700;
+      color: #78716c;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 0 0 0.85em 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      line-height: 1.2;
+    }
+
+    .tistory-post-container .toc-title::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: var(--color-blue-600);
+      border-radius: 50%;
+    }
+
+    .tistory-post-container .toc-list {
+      margin: 0 !important;
+      padding: 0 !important;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4em;
+    }
+
+    .tistory-post-container .toc-item {
+      margin: 0 !important;
+      padding: 0 !important;
+      line-height: 1.5;
+    }
+
+    .tistory-post-container .toc-item.toc-h2 {
+      font-weight: 600;
+      font-size: 0.96em;
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+    }
+
+    .tistory-post-container .toc-item.toc-h3 {
+      font-size: 0.89em;
+      padding-left: 1.2em !important;
+      margin-left: 0 !important;
+    }
+
+    .tistory-post-container .toc-item a {
+      color: #44403c;
+      text-decoration: none;
+      border-radius: 4px;
+      padding: 2px 0;
+      display: inline-block;
+      transition: all 0.15s ease;
+      margin: 0 !important;
+    }
+
+    .tistory-post-container .toc-item.toc-h3 a::before {
+      content: "↳ ";
+      color: #a8a29e;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .tistory-post-container .toc-item a:hover {
+      color: var(--color-blue-700);
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       TL;DR Summary Box - Radiant Executive Highlight (No Side-Tab Slop)
+       ========================================================================== */
+    .tistory-post-container .tldr-box {
+      background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%);
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 1.35em 1.6em;
+      margin-bottom: 2.6em;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.04);
+    }
+
+    .tistory-post-container .tldr-title {
+      font-family: var(--font-mono);
+      font-size: 0.82em;
+      font-weight: 800;
+      color: var(--color-blue-700);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tistory-post-container .tldr-title::before {
+      content: "✦";
+      font-size: 1.05em;
+    }
+
+    .tistory-post-container .tldr-content {
+      font-size: 0.98em;
+      color: var(--color-slate-900);
+      line-height: 1.72;
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       Callout / Alerts System (Tone-on-Tone Editorial Cards)
+       ========================================================================== */
+    .tistory-post-container .callout {
+      border-radius: 10px;
+      padding: 1.35em 1.55em;
+      margin: 2em 0;
+      border: 1px solid transparent;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.025);
+      font-size: 0.96em;
+    }
+
+    .tistory-post-container .callout *:last-child {
+      margin-bottom: 0;
+    }
+
+    .tistory-post-container .callout-title {
+      font-weight: 800;
+      font-size: 1.04em;
+      margin-bottom: 0.65em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tistory-post-container .callout-icon {
+      font-size: 1.15em;
+      line-height: 1;
+    }
+
+    /* Note / Info */
+    .tistory-post-container .callout-info {
+      background-color: #f0f7ff;
+      border-color: #bfdbfe;
+      color: #1e3a8a;
+    }
+    .tistory-post-container .callout-info .callout-title { color: #1d4ed8; }
+    .tistory-post-container .callout-info a { color: #1d4ed8; font-weight: 700; }
+
+    /* Warning / Caution */
+    .tistory-post-container .callout-warning {
+      background-color: #fffbeb;
+      border-color: #fde68a;
+      color: #78350f;
+    }
+    .tistory-post-container .callout-warning .callout-title { color: #92400e; }
+
+    /* Success / Key Result */
+    .tistory-post-container .callout-success {
+      background-color: #f0fdf4;
+      border-color: #bbf7d0;
+      color: #14532d;
+    }
+    .tistory-post-container .callout-success .callout-title { color: #15803d; }
+
+    /* Tip / Insight */
+    .tistory-post-container .callout-tip {
+      background-color: #f5f3ff;
+      border-color: #ddd6fe;
+      color: #4c1d95;
+    }
+    .tistory-post-container .callout-tip .callout-title { color: #6d28d9; }
+
+    /* Important / Critical */
+    .tistory-post-container .callout-important {
+      background-color: #fff1f2;
+      border-color: #fecdd3;
+      color: #881337;
+    }
+    .tistory-post-container .callout-important .callout-title { color: #be123c; }
+
+    /* ==========================================================================
+       Code Blocks & Inline Highlight Badges
+       ========================================================================== */
+    .tistory-post-container pre {
+      background-color: #0d1117 !important;
+      border-radius: 10px;
+      padding: 1.3em 1.5em;
+      overflow-x: auto;
+      margin: 2em 0;
+      border: 1px solid #30363d;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tistory-post-container code {
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      background-color: #eff6ff;
+      padding: 0.2em 0.48em;
+      border-radius: 4px;
+      color: #1d4ed8;
+      font-weight: 700;
+      border: 1px solid #bfdbfe;
+    }
+
+    .tistory-post-container pre code {
+      background-color: transparent !important;
+      padding: 0;
+      border-radius: 0;
+      border: none;
+      color: #e6edf3 !important;
+      font-weight: 400;
+      font-size: 0.9em;
+      display: block;
+      line-height: 1.6;
+    }
+
+    /* Syntax Highlighting Palette */
+    .tistory-post-container .hljs-keyword,
+    .tistory-post-container .hljs-selector-tag,
+    .tistory-post-container .hljs-literal,
+    .tistory-post-container .hljs-section { color: #ff7b72; font-weight: 700; }
+    .tistory-post-container .hljs-string,
+    .tistory-post-container .hljs-title,
+    .tistory-post-container .hljs-name,
+    .tistory-post-container .hljs-type,
+    .tistory-post-container .hljs-attribute { color: #79c0ff; }
+    .tistory-post-container .hljs-variable,
+    .tistory-post-container .hljs-template-variable { color: #d2a8ff; }
+    .tistory-post-container .hljs-comment,
+    .tistory-post-container .hljs-quote { color: #8b949e; font-style: italic; }
+    .tistory-post-container .hljs-number,
+    .tistory-post-container .hljs-regexp { color: #ffa657; }
+    .tistory-post-container .hljs-function .hljs-title { color: #7ee787; }
+
+    /* ==========================================================================
+       Figure & Image Block
+       ========================================================================== */
+    .tistory-post-container figure.imageblock {
+      text-align: center;
+      margin: 2.6em 0;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tistory-post-container figure.imageblock img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
+    }
+
+    .tistory-post-container figure.imageblock figcaption {
+      font-size: 0.88em;
+      color: var(--color-slate-500);
+      margin-top: 0.9em;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       Responsive Tables
+       ========================================================================== */
+    .tistory-post-container .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 2em 0;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tistory-post-container table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.94em;
+    }
+
+    .tistory-post-container th, 
+    .tistory-post-container td {
+      border: none;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0.9em 1.2em;
+      text-align: left;
+    }
+
+    .tistory-post-container th {
+      background-color: #f1f5f9;
+      font-weight: 800;
+      color: var(--color-slate-900);
+      font-size: 0.86em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #cbd5e1;
+    }
+
+    .tistory-post-container tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+
+    .tistory-post-container tr:hover td {
+      background-color: #e2e8f0;
+      transition: background-color 0.15s ease;
+    }
+
+    /* ==========================================================================
+       Links & Tag Badges
+       ========================================================================== */
+    .tistory-post-container p a,
+    .tistory-post-container li a {
+      color: var(--color-blue-600);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1.5px solid #93c5fd;
+      transition: all 0.15s ease;
+    }
+
+    .tistory-post-container p a:hover,
+    .tistory-post-container li a:hover {
+      color: var(--color-blue-700);
+      border-bottom-color: var(--color-blue-700);
+      background-color: #eff6ff;
+    }
+
+    .tistory-post-container .post-tags {
+      margin-top: 3.6em;
+      padding-top: 1.6em;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .tistory-post-container .tag {
+      display: inline-block;
+      background-color: #f1f5f9;
+      color: var(--color-slate-700);
+      padding: 0.32em 0.85em;
+      border-radius: 6px;
+      font-size: 0.85em;
+      margin-right: 0.45em;
+      margin-bottom: 0.45em;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid #cbd5e1;
+      transition: all 0.15s ease;
+    }
+
+    .tistory-post-container .tag:hover {
+      background-color: #e2e8f0;
+      color: var(--color-slate-900);
+      border-color: #94a3b8;
+    }
+  </style>
+
+  <!-- TL;DR (Post Summary Card) -->
+  {{TLDR}}
+
+  <!-- Table of Contents -->
+  {{TOC}}
+
+  <!-- Article Content -->
+  {{CONTENT}}
+
+</article>
