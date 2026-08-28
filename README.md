@@ -31,35 +31,6 @@ arXiv 논문, AI 기업 공식 블로그, 기술 아티클을 입력하면, 에�
   <img src="assets/pipeline.jpg" alt="Tech Blog Publisher Pipeline" width="720" />
 </p>
 
-<table align="center">
-<tr>
-<td align="center">📄<br><b>문서 분석</b></td>
-<td align="center">→</td>
-<td align="center">🖼️<br><b>도표 추출</b></td>
-<td align="center">→</td>
-<td align="center">✍️<br><b>블로그 작성</b></td>
-<td align="center">→</td>
-<td align="center">🔧<br><b>빌드 & 린트</b></td>
-<td align="center">→</td>
-<td align="center">☁️<br><b>CDN 업로드</b></td>
-<td align="center">→</td>
-<td align="center">🌐<br><b>발행</b></td>
-</tr>
-<tr>
-<td align="center"><sub>논문 PDF / 블로그 URL</sub></td>
-<td></td>
-<td align="center"><sub>PDF Layout Extractor</sub></td>
-<td></td>
-<td align="center"><sub>5단계 황금 구조</sub></td>
-<td></td>
-<td align="center"><sub>Zero-Defect 린터</sub></td>
-<td></td>
-<td align="center"><sub>Google Drive CDN</sub></td>
-<td></td>
-<td align="center"><sub>티스토리 HTML</sub></td>
-</tr>
-</table>
-
 ---
 
 ## 🚀 빠른 시작
